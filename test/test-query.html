@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="div">div</div>
+    <script>
+      // const cache = new Map();
+      // function id (value) {
+      //   if (!cache.has(value)) {
+      //     console.log('no cache');
+      //     const ele = document.getElementById(value);
+      //     if (!ele) {
+      //       return null;
+      //     }
+      //     cache.set(value, ele);
+      //   }
+
+      //   return cache.get(value);
+      // }
+
+      const id = (() => {
+        const cache = new Map();
+        return (value) => {
+          if (!cache.has(value)) {
+            console.log('no cache');
+            const ele = document.getElementById(value);
+            if (!ele) {
+              return null;
+            }
+            cache.set(value, ele);
+          }
+
+          return cache.get(value);
+        }
+      })();
+
+      console.log(id('div'));
+      console.log(id('div'));
+    </script>
+  </body>
+</html>

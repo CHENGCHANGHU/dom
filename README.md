@@ -1,3 +1,7 @@
-# #golden-tiger/javascript-package-template
+# #golden-tiger/dom
 
-JavaScript Package Template
+Creating and query HTML element through a easier way
+
+## createElement(option)
+
+## query(queryString)
