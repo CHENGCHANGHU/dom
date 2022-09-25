@@ -1,6 +1,6 @@
 {
   "name": "@golden-tiger/dom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Creating and query HTML element through a easier way",
   "main": "./lib/cjs-module.js",
   "module": "./lib/es-module.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CHENGCHANGHU/javascript-package-template.git"
+    "url": "git+https://github.com/CHENGCHANGHU/dom.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -29,9 +29,9 @@
   "author": "Cheng ChangHu",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/CHENGCHANGHU/javascript-package-template/issues"
+    "url": "https://github.com/CHENGCHANGHU/dom/issues"
   },
-  "homepage": "https://github.com/CHENGCHANGHU/javascript-package-template#readme",
+  "homepage": "https://github.com/CHENGCHANGHU/dom#readme",
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.18.10",
