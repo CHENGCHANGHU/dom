@@ -1,8 +1,10 @@
 # #golden-tiger/dom
 
-Creating and query HTML element through a easier way.
+## `query(queryString)`
 
-## createElement(option)
+Query HTML element and cache queried elements.
+
+## `createElement(option)`
 
 Recursively create HTML element from option. A falsy option will create nothing. A HTML element option will just return it. A array option will create a HTML element array.
 
@@ -14,4 +16,6 @@ Recursively create HTML element from option. A falsy option will create nothing.
 - `option.events` element events object
 - `option.lifecycle` element lifecycle
 
-## query(queryString)
+## `createHTMLString(options)`
+
+Create HTML string from options.
