@@ -3,7 +3,7 @@
  */
 const query = (() => {
   const cache = new Map();
-  return (queryString) => {
+  return (queryString: string) => {
     if (!cache.has(queryString)) {
       const ele = document.querySelector(queryString);
       if (!ele) {

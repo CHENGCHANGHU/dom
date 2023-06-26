@@ -12,9 +12,10 @@
  * (classes is a key in option.attributes for element class,
  * which is set in format of string or array of string)
  * @param {object} option.events element events object
+ * @param {object} option.lifecycle element lifecycle
  * @returns 
  */
- export function createElement (option) {
+ export function createElement(option: any): HTMLElement | HTMLElement[] {
   if (!option) { return; }
 
   if (option instanceof HTMLElement) {
@@ -22,16 +23,20 @@
   }
 
   if (Array.isArray(option)) {
-    return option.map(o => createElement(o));
+    return option.map(o => createElement(o)) as HTMLElement[];
   }
 
-  const { tag, text, html, children, attributes, events } = option;
+  const { tag, text, html, children, attributes, events, lifecycle }: any = {
+    lifecycle: {},
+    ...option
+  };
+  const { created } = lifecycle || {};
 
   if (!tag) {
     return document.createElement('template');
   }
 
-  let domElement = null;
+  let domElement: HTMLElement = null;
 
   if (['svg', 'path'].includes(tag)) {
     // svg element need to use createElementNS
@@ -72,6 +77,10 @@
 
   if (children) {
     domElement.append(...children.filter(Boolean).map(createElement));
+  }
+
+  if (created && typeof created === 'function') {
+    created(domElement, option);
   }
 
   return domElement;
