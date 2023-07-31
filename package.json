@@ -1,6 +1,6 @@
 {
   "name": "@golden-tiger/dom",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Creating and query HTML element through a easier way",
   "main": "./lib/cjs-module.js",
   "module": "./lib/es-module.js",
@@ -21,8 +21,7 @@
   },
   "files": [
     "dist",
-    "lib",
-    "src"
+    "lib"
   ],
   "keywords": [
     "golden-tiger",
