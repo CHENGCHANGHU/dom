@@ -1,29 +1,38 @@
+export interface CreateOptions {
+  indentationToken?: string;
+  beautify?: boolean;
+}
+
+const DefaultCreateOptions: CreateOptions = {
+  indentationToken: '  ',
+  beautify: true,
+};
+
 /**
  * Create HTML string from options.
  * @param options 
+ * @param createOptions 
  * @returns 
  */
-export function createHTMLString(options: any): string {
-  if (!options) { return ''; }
+export function createHTMLString(options: any, createOptions?: CreateOptions): string {
+  if (!options) return '';
 
-  if (options instanceof HTMLElement) {
-    return options.outerHTML;
-  }
+  if (options instanceof HTMLElement) return options.outerHTML;
 
-  if (Array.isArray(options)) {
-    return options.map(o => createHTMLString(o)).join('\n');
-  }
+  if (Array.isArray(options)) return options.map(o => createHTMLString(o, createOptions)).join('\n');
 
   const { tag, text, html, children, attributes, depth }: any = {
     depth: 0,
     ...options
   };
 
-  if (!tag) {
-    return '';
-  }
+  if (!tag) return '';
 
-  const indentationToken = '  ';
+  const { indentationToken, beautify } = {
+    ...DefaultCreateOptions,
+    ...createOptions,
+  };
+
   const indentationText = Array(depth).fill(indentationToken).join('');
   let elementString = `${indentationText}<${tag} `;
 
@@ -40,18 +49,18 @@ export function createHTMLString(options: any): string {
       });
   }
   elementString = elementString.slice(0, -1);
-  elementString += '>\n';
+  elementString += `>${beautify ? '\n' : ''}`;
 
   if (html) {
-    elementString += indentationText + indentationToken + html + '\n';
+    elementString += indentationText + indentationToken + html + (beautify ? '\n' : '');
   } else if (text || text === 0 || text === '') {
-    elementString += indentationText + indentationToken + text + '\n';
+    elementString += indentationText + indentationToken + text + (beautify ? '\n' : '');
   } else if (children) {
     children.forEach((child: any) => {
       elementString += createHTMLString({
         ...child,
         depth: depth + 1,
-      }) + '\n';
+      }, createOptions) + (beautify ? '\n' : '');
     });
   }
 
